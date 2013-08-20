@@ -15,9 +15,13 @@ class PercentReport
   end
   
   def percent_newer_than_me
-    (@nerd_repository.all.reject { |nerd|
-      nerd["hire_date"].blank? ||
-      nerd["hire_date"] <= Date.parse(my_hire_date)
-    }.count.to_f / total_nerds.to_f) * 100
+    ((total_nerds_with_hire_dates.reject { |nerd|
+      nerd["hire_date"] < Date.parse(my_hire_date)
+    }.count.to_f / total_nerds_with_hire_dates.count.to_f) * 100).round(2)
+  end
+  
+  private
+  def total_nerds_with_hire_dates
+    @total_nerds_with_hire_dates ||= @nerd_repository.all.reject { |nerd| nerd["hire_date"].blank? }
   end
 end

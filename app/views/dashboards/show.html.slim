@@ -1,6 +1,27 @@
 h1 BNR#Percent
 
 ul
-  li= "There are #{@percent_report.total_nerds} nerds at Big Nerd Ranch."
+  li= "There are #{@percent_report.total_active_nerds_count} nerds at Big Nerd Ranch."
+  li= "A total of #{@percent_report.total_nerds_count} nerds have worked here."
   li= "You started on #{@percent_report.my_hire_date}."
-  li= "#{@percent_report.percent_newer_than_me}% are newer than you!"
+  li= "Someone has been here since #{@percent_report.earliest_hire_date}."
+  li= "#{@percent_report.percent_newer_than_me}% of current nerds started after you did!"
+
+h3 Over time
+ul
+  li orange: active Nerds
+  li blue: inactive Nerds (this is broken right now pending an API change on Stable)
+
+div id="area" class="epoch category10" style="width: 700px; height: 200px;"
+
+javascript:
+  var data = [
+    { label: 'Inactive Nerds', values: [#{@percent_report.inactive_buckets_and_nerd_counts_js}]},
+    { label: 'Active Nerds', values: [#{@percent_report.active_buckets_and_nerd_counts_js}]}
+  ];
+
+  var areaChartInstance = $('#area').epoch({
+    type: 'line',
+    data: data,
+    axes: ['left']
+  });

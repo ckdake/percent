@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require d3.min
+//= require epoch.0.4.3.min
 //= require_tree .

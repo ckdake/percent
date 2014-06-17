@@ -3,12 +3,9 @@ ruby '2.0.0'
 
 # Rails
 gem 'rails', '4.0.0'
-gem 'bundler', '~>1.3.0'
+gem 'bundler', '~>1.6.2'
 gem 'json', '~>1.7.7'
 gem 'turbolinks'
-
-# Caching
-gem 'dalli'
 
 # Database
 gem 'pg'
@@ -38,6 +35,7 @@ gem 'puma', '~>2.0.0'
 gem 'rack-cache'
 gem 'rack-canonical-host', group: [:production]
 gem 'progress_bar'
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'dotenv'

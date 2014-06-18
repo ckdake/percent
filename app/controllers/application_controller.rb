@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_email('chris@bignerdranch.com')
+    # @current_user ||= User.find_by_email('chris@bignerdranch.com')
     @current_user ||=
       if params.has_key?(:api_token)
         User.where(api_token: params[:api_token]).first

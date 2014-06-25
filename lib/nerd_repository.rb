@@ -1,7 +1,7 @@
 require 'oauth2'
 
 class NerdRepository
-  Nerd = Struct.new(:full_name, :hire_date, :active, :updated_at)
+  Nerd = Struct.new(:full_name, :hire_date, :active, :end_date)
 
   def initialize(access_token)
     @access_token = access_token
@@ -13,7 +13,7 @@ class NerdRepository
         nerd["full_name"],
         nerd["hire_date"].blank? ? "" : Date.parse(nerd["hire_date"]),
         nerd["active"],
-        Date.parse(nerd["updated_at"]),
+        nerd["end_date"].blank? ? "" : Date.parse(nerd["end_date"]),
       )
     end
   end
@@ -24,7 +24,7 @@ class NerdRepository
         nerd["full_name"],
         nerd["hire_date"].blank? ? "" : Date.parse(nerd["hire_date"]),
         nerd["active"],
-        Date.parse(nerd["updated_at"]),
+        nerd["end_date"].blank? ? "" : Date.parse(nerd["end_date"]),
       )
     end
   end
@@ -35,7 +35,7 @@ class NerdRepository
         me["full_name"],
         me["hire_date"].blank? ? "" : Date.parse(me["hire_date"]),
         me["active"],
-        Date.parse(nerd["updated_at"]),
+        me["end_date"].blank? ? "" : Date.parse(nerd["end_date"]),
       )
     end
   end

@@ -5,23 +5,33 @@ ul
   li= "A total of #{@percent_report.total_nerds_count} nerds have worked here."
   li= "You started on #{@percent_report.my_hire_date}."
   li= "Someone has been here since #{@percent_report.earliest_hire_date}."
-  li= "#{@percent_report.percent_newer_than_me}% of current nerds started after you did!"
 
-h3 Over time (this is broken right now pending an API change on Stable)
+h3 Newer than you
+
+div id="gauge" class="epoch gauge-small"
+javascript:
+  $('#gauge').epoch({
+    type: 'time.gauge',
+    value: #{@percent_report.percent_newer_than_me / 100},
+  });
+
+h3 Headcount Over Time
 ul
-  li orange: active Nerds
-  li blue: inactive Nerds
+  li Blue: Current Nerds
+  li Orange: All Nerds including people that no longer work here
+  li Green: Nerds that no longer work here
 
 div id="area" class="epoch category10" style="width: 700px; height: 200px;"
 
 javascript:
   var data = [
-    { label: 'Inactive Nerds', values: [#{@percent_report.inactive_buckets_and_nerd_counts_js}]},
-    { label: 'Active Nerds', values: [#{@percent_report.active_buckets_and_nerd_counts_js}]}
+    { label: 'Current Nerds', values: [#{@percent_report.current_nerds_buckets_js}]},
+    { label: 'All Nerds', values:[#{@percent_report.all_nerds_buckets_js}]},
+    { label: 'Inactive Nerds', values:[#{@percent_report.inactive_nerds_buckets_js}]},
   ];
 
   var areaChartInstance = $('#area').epoch({
     type: 'line',
     data: data,
-    axes: ['left']
+    axes: ['left'],
   });

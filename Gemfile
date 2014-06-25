@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '>=4.0.2'
 
 # Deployment
+gem 'memcachier'
 gem 'dalli'
 gem 'puma', '~>2.0.0'
 gem 'rack-cache'

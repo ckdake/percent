@@ -70,7 +70,7 @@ class PercentReport
 
   def earliest_hire_date
     @earliest_hire_date ||= Rails.cache.fetch('earliest_hire_date') do
-      min_hire_date = Date.parse(my_hire_date)
+      min_hire_date = my_hire_date
       nerds.each do |nerd|
         min_hire_date = nerd["hire_date"] if !nerd["hire_date"].blank? && nerd["hire_date"] < min_hire_date
       end

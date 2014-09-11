@@ -45,8 +45,7 @@ class PercentReport
     Rails.cache.fetch('all_nerds_buckets_js') do
       buckets = []
       nerds_with_hire_date.each { |nerd|
-        nerd["end_date"] = Date.today if nerd["end_date"].blank?
-        (nerd["hire_date"]..nerd["end_date"]).each do |some_day|
+        (nerd["hire_date"]..Date.today).each do |some_day|
           buckets[days_since_big_nerd_epoch(some_day)] ||= 0
           buckets[days_since_big_nerd_epoch(some_day)] = buckets[days_since_big_nerd_epoch(some_day)] + 1
         end
